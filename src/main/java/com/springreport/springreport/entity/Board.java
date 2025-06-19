@@ -37,18 +37,22 @@ public class Board {
     @JoinColumn(name = "member_id")
     @Setter
     private Member member;
+    @Setter
+    private String writeUserPassword;
 
     @Builder
     public Board(
             String title,
             String description,
             LocalDateTime updDate,
-            String writeUser
+            String writeUser,
+            String writeUserPassword
     ) {
         this.title = title;
         this.description = description;
         this.updDate = updDate;
         this.writeUser = writeUser;
+        this.writeUserPassword = writeUserPassword;
     }
 
     public void opening() {

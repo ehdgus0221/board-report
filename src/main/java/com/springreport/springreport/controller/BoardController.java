@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BoardController {
     private final BoardService boardService;
 
-    @PostMapping("/booard")
+    @PostMapping("/board")
     public void postingBoard(@RequestBody BoardDto.Request request){
         boardService.postingBoard(request);
     }

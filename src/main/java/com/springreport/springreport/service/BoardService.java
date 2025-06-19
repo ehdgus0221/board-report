@@ -23,6 +23,7 @@ public class BoardService {
         Board board = request.toEntity();
         board.setMember(member);
         board.opening();
+        board.setWriteUserPassword(member.getUserPassword());
         log.info(board.toString());
 
         boardRepository.save(board);
