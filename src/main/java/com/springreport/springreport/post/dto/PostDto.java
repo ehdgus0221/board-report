@@ -6,28 +6,30 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 public class PostDto {
-    private Long id;
     private String subject;
     private String contents;
-    private MemberDto memberDto;
+    private String writer;
+    private LocalDateTime regDate;
 
     @Builder(access = AccessLevel.PRIVATE)
-    public PostDto(Long id, String subject, String contents, MemberDto memberDto) {
-        this.id = id;
+    public PostDto(String subject, String writer, String contents, LocalDateTime regDate) {
         this.subject = subject;
         this.contents = contents;
-        this.memberDto = memberDto;
+        this.writer = writer;
+        this.regDate = regDate;
     }
 
     @Builder(access = AccessLevel.PRIVATE)
     public static PostDto fromEntity(Post post) {
         PostDto postDto = PostDto.builder()
-                .id(post.getId())
                 .subject(post.getSubject())
+                .writer(post.getWriter())
                 .contents(post.getContents())
-                .memberDto(MemberDto.fromEntity(post.getMember()))
+                .regDate(post.getRegDate())
                 .build();
         return postDto;
     }

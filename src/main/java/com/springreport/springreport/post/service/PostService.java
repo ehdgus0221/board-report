@@ -46,14 +46,14 @@ public class PostService {
     }
 
     public List<PostDto> getPostList() {
-        return postRepository.findAll()
+        return postRepository.findAllByOrderByRegDateDesc()
                 .stream()
                 .map(PostDto::fromEntity)
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public void updatePost(Long postId, UpdatePostRequest request) {
+    public PostDto updatePost(Long postId, UpdatePostRequest request) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(()-> new RuntimeException("게시글 없음"));
         Member member = memberRepository.findByUserId(request.getUserId())
@@ -68,10 +68,11 @@ public class PostService {
         }
 
         post.update(request.getSubject(), request.getContents(), request.getWriter());
+        return PostDto.fromEntity(post);
     }
 
     @Transactional
-    public void deletePost(Long postId, DeletePostRequest request) {
+    public String deletePost(Long postId, DeletePostRequest request) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(()-> new RuntimeException("게시글 없음"));
 
@@ -81,6 +82,7 @@ public class PostService {
 
         postRepository.delete(post);
         post.delete();
+        return "정상적으로 삭제 완료하였습니다.";
     }
 
 }

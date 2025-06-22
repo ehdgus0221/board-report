@@ -57,9 +57,8 @@ public class PostController {
      * @return
      */
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> updatePost(@PathVariable("id") Long postId, @RequestBody UpdatePostRequest request) {
-        postService.updatePost(postId, request);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<PostDto> updatePost(@PathVariable("id") Long postId, @RequestBody UpdatePostRequest request) {
+        return ResponseEntity.ok(postService.updatePost(postId, request));
     }
 
     /**
@@ -68,9 +67,8 @@ public class PostController {
      * @return
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePost(@PathVariable("id") Long postId, @RequestBody DeletePostRequest request) {
-        postService.deletePost(postId, request);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<String> deletePost(@PathVariable("id") Long postId, @RequestBody DeletePostRequest request) {
+        return ResponseEntity.ok(postService.deletePost(postId, request));
     }
 
 
