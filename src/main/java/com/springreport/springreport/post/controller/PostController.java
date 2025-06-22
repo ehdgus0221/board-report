@@ -1,5 +1,6 @@
 package com.springreport.springreport.post.controller;
 
+import com.springreport.springreport.post.dto.PostDto;
 import com.springreport.springreport.post.dto.request.CreatePostRequest;
 import com.springreport.springreport.post.dto.response.CreatePostResponse;
 import com.springreport.springreport.post.service.PostService;
@@ -16,9 +17,23 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
     private final PostService postService;
 
+    /**
+     * 게시글 생성
+     * @param request
+     * @return
+     */
     @PostMapping
     public ResponseEntity<CreatePostResponse> createPost(@RequestBody CreatePostRequest request) {
         return ResponseEntity.ok(postService.createPost(request));
+    }
+
+    /**
+     * 게시글 단일 조회
+     */
+    @GetMapping("/{id}")
+    public PostDto getPost(@PathVariable("id") Long postId) {
+        PostDto postDto = postService.getPost(postId);
+        return postDto;
     }
 
 }
