@@ -1,13 +1,13 @@
 package com.springreport.springreport.post.controller;
 
-import com.springreport.springreport.post.dto.PostDto;
+import com.springreport.springreport.post.dto.request.CreatePostRequest;
+import com.springreport.springreport.post.dto.response.CreatePostResponse;
 import com.springreport.springreport.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 
 @Slf4j
 @RestController
@@ -17,9 +17,8 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping
-    public void createPost(@RequestBody PostDto.Request request){
-        postService.createPost(request);
+    public ResponseEntity<CreatePostResponse> createPost(@RequestPart CreatePostRequest request) {
+        return ResponseEntity.ok(postService.createPost(request);
     }
-
 
 }
