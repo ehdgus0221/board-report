@@ -2,6 +2,7 @@ package com.springreport.springreport.post.controller;
 
 import com.springreport.springreport.post.dto.PostDto;
 import com.springreport.springreport.post.dto.request.CreatePostRequest;
+import com.springreport.springreport.post.dto.request.DeletePostRequest;
 import com.springreport.springreport.post.dto.request.UpdatePostRequest;
 import com.springreport.springreport.post.dto.response.CreatePostResponse;
 import com.springreport.springreport.post.service.PostService;
@@ -49,9 +50,26 @@ public class PostController {
         return ResponseEntity.ok(postService.getPostList());
     }
 
+    /**
+     * 게시글 수정
+     * @param postId
+     * @param request
+     * @return
+     */
     @PatchMapping("/{id}")
     public ResponseEntity<Void> updatePost(@PathVariable("id") Long postId, @RequestBody UpdatePostRequest request) {
         postService.updatePost(postId, request);
+        return ResponseEntity.ok().build();
+    }
+
+    /**
+     * 게시글 삭제
+     * @param postId
+     * @return
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePost(@PathVariable("id") Long postId, @RequestBody DeletePostRequest request) {
+        postService.deletePost(postId, request);
         return ResponseEntity.ok().build();
     }
 

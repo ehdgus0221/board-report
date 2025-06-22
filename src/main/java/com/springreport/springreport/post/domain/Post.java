@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@SQLDelete(sql = "UPDATE post SET status = CLOSE WHERE post_id = ?")
+@SQLDelete(sql = "UPDATE post SET status = 'CLOSE' WHERE post_id = ?")
 @Where(clause = "status = 'OPEN'")
 
 public class Post {
@@ -52,24 +52,21 @@ public class Post {
             String contents,
             String writer,
             String password,
-            PostStatus status,
             Member member
     ) {
         this.subject = subject;
         this.contents = contents;
         this.writer = writer;
         this.password = password;
-        this.status = status;
         this.member = member;
     }
 
-    public static Post of(String contents, String subject, String writer, String password, PostStatus status, Member member) {
+    public static Post of(String contents, String subject, String writer, String password, Member member) {
         Post post = Post.builder()
                 .subject(subject)
                 .contents(contents)
                 .writer(writer)
                 .password(password)
-                .status(status)
                 .member(member)
                 .build();
         return post;
@@ -81,7 +78,8 @@ public class Post {
         this.writer = newWriter;
     }
 
-    public void opening() {
+    public void create() {
         this.status = PostStatus.OPEN;
     }
+    public void delete() {this.status = PostStatus.CLOSE;}
 }

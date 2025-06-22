@@ -4,6 +4,7 @@ import com.springreport.springreport.post.domain.Post;
 import com.springreport.springreport.member.domain.Member;
 import com.springreport.springreport.post.dto.PostDto;
 import com.springreport.springreport.post.dto.request.CreatePostRequest;
+import com.springreport.springreport.post.dto.request.DeletePostRequest;
 import com.springreport.springreport.post.dto.request.UpdatePostRequest;
 import com.springreport.springreport.post.dto.response.CreatePostResponse;
 import com.springreport.springreport.post.enums.PostStatus;
@@ -29,9 +30,10 @@ public class PostService {
     public CreatePostResponse createPost(CreatePostRequest request){
         Member member = memberRepository.findByUserId(request.getUserId())
                 .orElseThrow(()-> new RuntimeException("사용자 없음"));
-        Post post = Post.of(request.getSubject(), request.getContents(), request.getWriter(),request.getPassword(), PostStatus.OPEN, member);
+        Post post = Post.of(request.getSubject(), request.getContents(), request.getWriter(),request.getPassword(), member);
 
         postRepository.save(post);
+        post.create();
 
         return CreatePostResponse.fromPost(post);
     }
@@ -66,6 +68,19 @@ public class PostService {
         }
 
         post.update(request.getSubject(), request.getContents(), request.getWriter());
+    }
+
+    @Transactional
+    public void deletePost(Long postId, DeletePostRequest request) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(()-> new RuntimeException("게시글 없음"));
+
+        if (!post.getPassword().equals(request.getPassword())) {
+            throw new IllegalArgumentException("패스워드 일치하지 않음");
+        }
+
+        postRepository.delete(post);
+        post.delete();
     }
 
 }
