@@ -13,6 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -34,6 +37,13 @@ public class PostService {
         Post post = postRepository.findById(postId).orElseThrow(()-> new RuntimeException("게시글 없음"));
 
         return PostDto.fromEntity(post);
+    }
+
+    public List<PostDto> getPostList() {
+        return postRepository.findAll()
+                .stream()
+                .map(PostDto::fromEntity)
+                .collect(Collectors.toList());
     }
 
 }

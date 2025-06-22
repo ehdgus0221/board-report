@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @Slf4j
 @RestController
@@ -33,6 +35,14 @@ public class PostController {
     @GetMapping("/{id}")
     public ResponseEntity<PostDto> getPost(@PathVariable("id") Long postId) {
         return ResponseEntity.ok(postService.getPost(postId));
+    }
+
+    /**
+     * 게시글 전체 조회
+     */
+    @GetMapping
+    public ResponseEntity<List<PostDto>> getPosts() {
+        return ResponseEntity.ok(postService.getPostList());
     }
 
 }
