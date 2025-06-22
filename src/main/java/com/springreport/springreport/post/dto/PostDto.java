@@ -6,8 +6,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.stream.Collectors;
-
 @Getter
 public class PostDto {
     private Long id;

@@ -1,7 +1,8 @@
 package com.springreport.springreport.post.service;
 
 import com.springreport.springreport.post.domain.Post;
-import com.springreport.springreport.member.Member;
+import com.springreport.springreport.member.domain.Member;
+import com.springreport.springreport.post.dto.PostDto;
 import com.springreport.springreport.post.dto.request.CreatePostRequest;
 import com.springreport.springreport.post.dto.response.CreatePostResponse;
 import com.springreport.springreport.post.enums.PostStatus;
@@ -27,6 +28,12 @@ public class PostService {
         postRepository.save(post);
 
         return CreatePostResponse.fromPost(post);
+    }
+
+    public PostDto getPost(Long postId){
+        Post post = postRepository.findById(postId).orElseThrow(()-> new RuntimeException("게시글 없음"));
+
+        return PostDto.fromEntity(post);
     }
 
 }

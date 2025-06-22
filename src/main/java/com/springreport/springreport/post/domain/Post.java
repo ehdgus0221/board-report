@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@SQLDelete(sql = "UPDATE post SET status = off WHERE post_id = ?")
-@Where(clause = "is_deleted = false")
+@SQLDelete(sql = "UPDATE post SET status = CLOSE WHERE post_id = ?")
+@Where(clause = "status = 'OPEN'")
 
 public class Post {
     @Id
