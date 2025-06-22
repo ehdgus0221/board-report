@@ -10,13 +10,15 @@ public class CreatePostResponse {
     private Long postId;
     private String subject;
     private String contents;
+    private String writer;
     private String password;
 
     @Builder
-    private CreatePostResponse(Long postId, String subject, String contents, String password) {
+    private CreatePostResponse(Long postId, String subject, String contents, String writer, String password) {
         this.postId = postId;
         this.subject = subject;
         this.contents = contents;
+        this.writer = writer;
         this.password = password;
     }
 
@@ -25,6 +27,7 @@ public class CreatePostResponse {
                 .postId(post.getId())
                 .subject(post.getSubject())
                 .contents(post.getContents())
+                .writer(post.getWriter())
                 .password(post.getPassword())
                 .build();
     }

@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class CreatePostRequest {
+public class UpdatePostRequest {
     private String userId;
+    private String password;
     private String subject;
     private String contents;
     private String writer;
-    private String password;
 }

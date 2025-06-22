@@ -36,6 +36,7 @@ public class Post {
     @Setter
     private PostStatus status;
 
+    private String writer;
     private String password;
 
     @LastModifiedDate
@@ -49,26 +50,35 @@ public class Post {
     public Post(
             String subject,
             String contents,
+            String writer,
             String password,
             PostStatus status,
             Member member
     ) {
         this.subject = subject;
         this.contents = contents;
+        this.writer = writer;
         this.password = password;
         this.status = status;
         this.member = member;
     }
 
-    public static Post of(String contents, String subject, String password, PostStatus status, Member member) {
+    public static Post of(String contents, String subject, String writer, String password, PostStatus status, Member member) {
         Post post = Post.builder()
                 .subject(subject)
                 .contents(contents)
+                .writer(writer)
                 .password(password)
                 .status(status)
                 .member(member)
                 .build();
         return post;
+    }
+
+    public void update(String newSubject, String newContents, String newWriter) {
+        this.subject = newSubject;
+        this.contents = newContents;
+        this.writer = newWriter;
     }
 
     public void opening() {
