@@ -7,6 +7,8 @@ import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
@@ -37,10 +39,10 @@ public class Post {
 
     private String password;
 
-    @UpdateTimestamp
+    @LastModifiedDate
     @Setter
     private LocalDateTime updDate;
-    @UpdateTimestamp
+    @CreatedDate
     @Setter
     private LocalDateTime regDate;
 
@@ -49,19 +51,22 @@ public class Post {
             String subject,
             String contents,
             String password,
+            PostStatus status,
             Member member
     ) {
         this.subject = subject;
         this.contents = contents;
         this.password = password;
+        this.status = status;
         this.member = member;
     }
 
-    public static Post of(String contents, String subject, String password, Member member) {
+    public static Post of(String contents, String subject, String password, PostStatus status, Member member) {
         Post post = Post.builder()
                 .subject(subject)
                 .contents(contents)
                 .password(password)
+                .status(status)
                 .member(member)
                 .build();
         return post;

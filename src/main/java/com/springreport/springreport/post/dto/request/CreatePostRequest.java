@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class CreatePostRequest {
-    private String memberId;
+    private String userId;
     private String subject;
     private String contents;
     private String password;
