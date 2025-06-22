@@ -1,4 +1,4 @@
-package com.springreport.springreport.member;
+package com.springreport.springreport.member.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

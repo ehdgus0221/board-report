@@ -1,11 +1,10 @@
 package com.springreport.springreport.post.domain;
 
 import com.springreport.springreport.post.enums.PostStatus;
-import com.springreport.springreport.member.Member;
+import com.springreport.springreport.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;

@@ -1,6 +1,6 @@
 package com.springreport.springreport.member.repository;
 
-import com.springreport.springreport.member.Member;
+import com.springreport.springreport.member.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
