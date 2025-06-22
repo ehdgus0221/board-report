@@ -1,7 +1,7 @@
-package com.springreport.springreport.entity;
+package com.springreport.springreport.post.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.springreport.springreport.enums.BoardStatus;
+import com.springreport.springreport.post.enums.PostStatus;
+import com.springreport.springreport.member.Member;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -12,10 +12,10 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
-public class Board {
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "board_id")
+    @Column(name = "post_id")
     private Long id;
     @Setter
     private String title;
@@ -25,7 +25,7 @@ public class Board {
     private String writeUser;
     @Enumerated(EnumType.STRING)
     @Setter
-    private BoardStatus status;
+    private PostStatus status;
     @UpdateTimestamp
     @Setter
     private LocalDateTime updDate;
@@ -41,7 +41,7 @@ public class Board {
     private String writeUserPassword;
 
     @Builder
-    public Board(
+    public Post(
             String title,
             String description,
             LocalDateTime updDate,
@@ -56,6 +56,6 @@ public class Board {
     }
 
     public void opening() {
-        this.status = BoardStatus.OPEN;
+        this.status = PostStatus.OPEN;
     }
 }

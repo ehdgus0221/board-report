@@ -1,4 +1,4 @@
-package com.springreport.springreport.entity;
+package com.springreport.springreport.member;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

@@ -1,6 +1,6 @@
-package com.springreport.springreport.repository;
+package com.springreport.springreport.member.repository;
 
-import com.springreport.springreport.entity.Member;
+import com.springreport.springreport.member.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

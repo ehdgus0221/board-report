@@ -1,21 +1,15 @@
 package com.springreport.springreport;
 
-import com.springreport.springreport.entity.Member;
-import com.springreport.springreport.repository.BoardRepository;
-import com.springreport.springreport.repository.MemberRepository;
-import jakarta.annotation.PostConstruct;
+import com.springreport.springreport.post.repository.PostRepository;
+import com.springreport.springreport.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.IntStream;
 
 @Component
 @RequiredArgsConstructor
 public class DataInit {
     private final MemberRepository memberRepository;
-    private final BoardRepository boardRepository;
+    private final PostRepository postRepository;
 
     /**
      * 더미데이터 만들기
