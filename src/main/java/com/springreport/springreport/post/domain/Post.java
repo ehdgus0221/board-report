@@ -34,6 +34,9 @@ public class Post {
     @Enumerated(EnumType.STRING)
     @Setter
     private PostStatus status;
+
+    private String password;
+
     @UpdateTimestamp
     @Setter
     private LocalDateTime updDate;
@@ -45,17 +48,20 @@ public class Post {
     public Post(
             String subject,
             String contents,
+            String password,
             Member member
     ) {
         this.subject = subject;
         this.contents = contents;
+        this.password = password;
         this.member = member;
     }
 
-    public static Post of(String contents, String subject, Member member) {
+    public static Post of(String contents, String subject, String password, Member member) {
         Post post = Post.builder()
                 .subject(subject)
                 .contents(contents)
+                .password(password)
                 .member(member)
                 .build();
         return post;

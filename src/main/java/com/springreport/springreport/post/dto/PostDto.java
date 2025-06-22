@@ -17,19 +17,18 @@ public class PostDto {
 
     }*/
     public record Request(
-            String title,
-            String description,
+            String subject,
+            String contents,
             @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
             LocalDateTime updDate,
-            String writeUser
+            String password
     ) {
         // 엔티티 객체 생성을 쉽게 하기 위함
         public Post toEntity() {
             return Post.builder()
-                    .title(title)
-                    .description(description)
-                    .updDate(updDate)
-                    .writeUser(writeUser)
+                    .subject(subject)
+                    .contents(contents)
+                    .password(password)
                     .build();
         }
     }
