@@ -29,11 +29,4 @@ public class CreateMemberRequest {
         this.password = password;
     }
 
-    public static CreateMemberRequest fromEntity(Member member) {
-        return CreateMemberRequest.builder()
-                .userName(member.getUserName())
-                .userId(member.getUserId())
-                .password(member.getUserPassword())
-                .build();
-    }
 }

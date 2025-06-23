@@ -2,6 +2,7 @@ package com.springreport.springreport.member.controller;
 
 import com.springreport.springreport.common.ApiResponse;
 import com.springreport.springreport.member.dto.CreateMemberRequest;
+import com.springreport.springreport.member.dto.LoginMemberRequest;
 import com.springreport.springreport.member.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,12 @@ public class MemberController {
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse> createMember(@RequestBody @Valid CreateMemberRequest createMemberRequest) {
         ApiResponse response = memberService.createMember(createMemberRequest);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse> loginMember(@RequestBody @Valid LoginMemberRequest loginMemberRequest) {
+        ApiResponse response = memberService.loginMember(loginMemberRequest);
         return ResponseEntity.ok(response);
     }
 
