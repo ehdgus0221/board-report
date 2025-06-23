@@ -1,5 +1,6 @@
 package com.springreport.springreport.member.domain;
 
+import com.springreport.springreport.post.domain.Post;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
