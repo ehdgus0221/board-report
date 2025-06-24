@@ -18,16 +18,23 @@ public class Member {
     private String userName;
     private String userId;
     private String userPassword;
+    private String refreshToken;
 
     @Builder
     Member(
             String userName,
             String userId,
-            String userPassword
+            String userPassword,
+            String refreshToken
     ) {
         this.userName = userName;
         this.userId = userId;
         this.userPassword = userPassword;
+        this.refreshToken = refreshToken;
+    }
+
+    public void updateRefreshToken(String updateRefreshToken) {
+        this.refreshToken = updateRefreshToken;
     }
 
 }

@@ -3,9 +3,14 @@ package com.springreport.springreport.member.controller;
 import com.springreport.springreport.common.ApiResponse;
 import com.springreport.springreport.member.dto.CreateMemberRequest;
 import com.springreport.springreport.member.dto.LoginMemberRequest;
+import com.springreport.springreport.member.dto.LoginMemberResponse;
 import com.springreport.springreport.member.service.MemberService;
+import com.springreport.springreport.security.dto.JwtTokenDto;
+import com.springreport.springreport.security.service.JwtTokenService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/member")
 public class MemberController {
     private final MemberService memberService;
+    private final JwtTokenService jwtTokenService;
 
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse> createMember(@RequestBody @Valid CreateMemberRequest createMemberRequest) {
@@ -26,8 +32,12 @@ public class MemberController {
 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse> loginMember(@RequestBody @Valid LoginMemberRequest loginMemberRequest) {
-        ApiResponse response = memberService.loginMember(loginMemberRequest);
-        return ResponseEntity.ok(response);
+        LoginMemberResponse res = memberService.loginMember(loginMemberRequest);
+
+        return ResponseEntity
+                .status(res.getApiResponse().getStatus())
+                .headers(res.getHeaders())
+                .body(res.getApiResponse());
     }
 
 }
